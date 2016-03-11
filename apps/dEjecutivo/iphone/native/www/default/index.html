@@ -1,0 +1,160 @@
+<!DOCTYPE HTML><html>
+    <head>
+        <meta charset="UTF-8">
+        <title>dEjecutivo</title>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+    		<!--
+    			<link rel="shortcut icon" href="images/favicon.png">
+    			<link rel="apple-touch-icon" href="images/apple-touch-icon.png"> 
+    		-->
+        <link href="worklight/worklight.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/ionicons.css" rel="stylesheet">
+        <link href="dist/css/AdminLTE.min.css" rel="stylesheet">
+        <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet">
+        <script>
+		// Define WL namespace.
+		var WL = WL ? WL : {};
+		/**
+		 * WLClient configuration variables.
+		 * Values are injected by the deployer that packs the gadget.
+		 */
+		 WL.StaticAppProps = {
+   "APP_DISPLAY_NAME": "dEjecutivo",
+   "APP_ID": "dEjecutivo",
+   "APP_SERVICES_URL": "\/apps\/services\/",
+   "APP_VERSION": "1.0",
+   "ENVIRONMENT": "iphone",
+   "LOGIN_DISPLAY_TYPE": "embedded",
+   "WORKLIGHT_NATIVE_VERSION": "110061647",
+   "WORKLIGHT_PLATFORM_VERSION": "7.1.0.0",
+   "WORKLIGHT_ROOT_URL": "\/apps\/services\/api\/dEjecutivo\/iphone\/"
+};
+</script>
+		<script src="worklight/cordova.js"></script>
+		<script src="worklight/wljq.js"></script>
+		<script src="worklight/worklight.js"></script>
+		<script src="worklight/checksum.js"></script>
+		<script>window.$ = window.jQuery = WLJQ;</script>
+    </head>
+    <body style="display: none;">
+        <section class="content">
+    		<!-- div id="AuthDiv">
+			  <div id="loginForm">
+			    <input type="text" id="usernameInputField" placeholder="Enter username" />
+			    <br />
+			    <input type="password" placeholder="Enter password" id="passwordInputField" />
+			    <br/>
+			    <input type="button" class="formButton" id="loginButton" value="Login" />
+			    <input type="button" class="formButton" id="cancelButton" value="Cancel" />
+			  </div>
+			</div-->
+            <div id="AuthDiv">
+                <p id="AuthInfo"></p>
+                <input id="AuthUsername" placeholder="Enter username" type="text">
+                <br>
+                <input id="AuthPassword" placeholder="Enter password" type="password">
+                <br>
+                <input class="formButton" id="AuthSubmitButton" type="button" value="Submit">
+			        <!-- input type="button" class="formButton" value="Cancel" id="AuthCancelButton" /-->
+            </div>
+            <div id="AppDiv">
+                <!--style="display:none"-->&gt;
+    			<!-- Small boxes (Stat box) -->
+    			<input class="appButton" onclick="WL.Client.logout('AuthRealm', {onSuccess:WL.Client.reloadApp})" type="button" value="Logout">
+                <div class="row">
+                    <div class="col-xs-4">
+<!-- 					<div class="col-lg-2 col-lg-offset-1 col-xs-12"> -->
+						<!-- small box -->
+                        <div class="small-box bg-aqua" id="containerTotal">
+                            <div class="inner">
+                                <h4 id="countTotal">0</h4>
+                                <p>Total</p>
+                            </div>					
+                        </div>
+                    </div>
+					<!-- ./col -->
+                    <div class="col-xs-4">
+						<!-- small box -->
+                        <div class="small-box bg-red" id="containerOpen">
+                            <div class="inner">
+                                <h4 id="countOpen">0</h4>
+                                <p>Open</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-warning"></i>
+                            </div>							
+                        </div>
+                    </div>
+					<!-- ./col -->
+                    <div class="col-xs-4">
+						<!-- small box -->
+                        <div class="small-box bg-green" id="containerClosed">
+                            <div class="inner">
+                                <h4 id="countClosed">0</h4>
+                                <p>Closed</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-lock"></i>
+                            </div>							
+                        </div>
+                    </div>
+                </div>
+				<!-- /.row -->
+                <div class="row">
+					<!-- ./col -->
+                    <div class="col-xs-6">
+						<!-- small box -->
+                        <div class="small-box bg-red" id="containerMF">
+                            <div class="inner">
+                                <h4 id="countMF">0</h4>
+                                <p>Massive Failure</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-medium"></i>
+                            </div>							
+                        </div>
+                    </div>
+					<!-- ./col -->					
+                    <div class="col-xs-6">
+						<!-- small box -->
+                        <div class="small-box bg-aqua" id="containerCompanies">
+                            <div class="inner">
+                                <h4 id="countCompanies">0</h4>
+                                <p>Total Companies</p>
+                            </div>
+                            <div class="icon">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </div>							
+                        </div>
+                    </div>
+					<!-- ./col -->		
+                </div>
+				<!-- /.row -->				
+                <div class="row">
+                    <section class="content">
+                        <div class="panel panel-primary box box-primary">
+                            <div class="box-header ">
+                                <i class="glyphicon glyphicon-home"></i>
+                                <h3 class="box-title">Centers<span class="titleSection"></span>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="centerChart"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+    		<!-- /.row -->
+        </section>
+        <script src="js/initOptions.js"></script>
+    		<script src="js/main.js"></script>
+    		<script src="js/messages.js"></script>
+    		<script src="js/bootstrap.js"></script>
+    		<script src="dist/js/app.min.js"></script>
+    		<script src="js/highcharts.js"></script>
+    		<script src="js/adapterAuthentication.js"></script>
+    </body>
+</html>
